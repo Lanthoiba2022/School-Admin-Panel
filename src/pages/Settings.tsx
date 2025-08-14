@@ -11,6 +11,7 @@ export const Settings = () => {
     <div>
       <Header 
         title="Settings"
+        timestamp="12/08/2025, 15:46:57"
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
