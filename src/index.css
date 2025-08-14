@@ -1,0 +1,190 @@
+/* SpeakGenie Design System - Educational Dashboard */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove unwanted focus outlines */
+* {
+  outline: none !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+/* Chart container focus removal */
+.recharts-wrapper:focus,
+.recharts-wrapper *:focus {
+  outline: none !important;
+}
+
+/* Remove any default browser focus styles */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+}
+
+/* Ensure charts don't have unwanted borders or outlines */
+.recharts-pie,
+.recharts-bar,
+.recharts-tooltip-wrapper {
+  outline: none !important;
+  border: none !important;
+}
+
+/* Custom focus styles for accessibility (optional) */
+.focus-visible:focus-visible {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+@layer base {
+  :root {
+    /* Brand Colors - SpeakGenie */
+    --primary-blue: 213 93% 68%;        /* #2563eb */
+    --secondary-blue: 213 93% 73%;      /* #3b82f6 */
+    --success-green: 158 64% 52%;       /* #10b981 */
+    --warning-orange: 38 92% 50%;       /* #f59e0b */
+    --danger-red: 0 84% 60%;            /* #ef4444 */
+    --accent-purple: 248 53% 58%;       /* #8b5cf6 */
+    
+    /* Background System */
+    --app-background: 210 40% 98%;      /* #f8fafc */
+    --card-background: 0 0% 100%;       /* #ffffff */
+    --sidebar-background: 0 0% 100%;    /* #ffffff */
+    
+    /* Text Colors */
+    --text-primary: 210 11% 15%;        /* #1f2937 */
+    --text-secondary: 213 9% 40%;       /* #6b7280 */
+    --text-muted: 210 6% 56%;           /* #9ca3af */
+    
+    /* Interactive States */
+    --hover-blue: 213 93% 95%;          /* Light blue hover */
+    --active-blue: 213 93% 68%;         /* Active state */
+    
+    /* Chart Colors */
+    --chart-blue: 213 93% 68%;
+    --chart-green: 158 64% 52%;
+    --chart-orange: 38 92% 50%;
+    --chart-purple: 248 53% 58%;
+    --chart-red: 0 84% 60%;
+    
+    /* Legacy Variables for Compatibility */
+    --background: 210 40% 98%;
+    --foreground: 210 11% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+    --primary: 213 93% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 27% 84%;
+    --secondary-foreground: 210 11% 15%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 213 9% 40%;
+    --accent: 213 27% 84%;
+    --accent-foreground: 210 11% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 93% 68%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - SpeakGenie colors adjusted */
+    --app-background: 210 11% 8%;
+    --card-background: 210 11% 12%;
+    --sidebar-background: 210 11% 10%;
+    
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 70%;
+    --text-muted: 0 0% 60%;
+    
+    --primary-blue: 213 93% 68%;
+    --hover-blue: 213 93% 20%;
+    
+    /* Legacy compatibility */
+    --background: 210 11% 8%;
+    --foreground: 0 0% 95%;
+    --card: 210 11% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 210 11% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 213 93% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 217 33% 18%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 217 33% 18%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 213 93% 68%;
+    --sidebar-background: 210 11% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 213 93% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 213 93% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-app-background text-text-primary font-['Inter'] antialiased;
+  }
+}
+
+@layer components {
+  /* SpeakGenie Component Variants */
+  .metric-card {
+    @apply bg-card-background rounded-lg p-6 shadow-sm border border-gray-100;
+  }
+  
+  .student-card {
+    @apply bg-card-background rounded-lg p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-hover-blue hover:text-primary-blue transition-colors;
+  }
+  
+  .sidebar-item-active {
+    @apply bg-primary-blue text-white;
+  }
+  
+  .chart-container {
+    @apply bg-card-background rounded-lg p-6 shadow-sm border border-gray-100;
+  }
+}
