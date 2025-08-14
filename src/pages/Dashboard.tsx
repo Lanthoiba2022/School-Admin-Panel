@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { MetricCard } from '@/components/cards/MetricCard';
 import { LeaderboardCard } from '@/components/cards/LeaderboardCard';
-import { StudentListCard } from '@/components/cards/StudentListCard';
+import { StudentCard } from '@/components/cards/StudentCard';
 import { SummaryCard } from '@/components/cards/SummaryCard';
 import { CustomBarChart } from '@/components/charts/BarChart';
 import { CustomPieChart } from '@/components/charts/PieChart';
@@ -119,49 +119,49 @@ export const Dashboard = () => {
       </div>
 
       {/* All Students Section */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-blue-600 mb-2">All Students</h2>
-            <p className="text-gray-600">
-              Complete student directory with performance details
-            </p>
+            <h2 className="text-2xl font-bold text-blue-600">All Students</h2>
+            <p className="text-gray-600">Complete student directory with performance details.</p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Input 
+              placeholder="Search students..." 
+              className="w-full sm:w-64"
+            />
+            <Select defaultValue="all">
+              <SelectTrigger className="w-full sm:w-40">
+                <SelectValue placeholder="All Classes" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Classes</SelectItem>
+                {classEnrollment.map((cls) => (
+                  <SelectItem key={cls.class} value={cls.class.toLowerCase()}>
+                    {cls.class}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="flex gap-4 mb-6">
-          <Input 
-            placeholder="Search students..." 
-            className="max-w-sm border-gray-200 focus:outline-none"
-          />
-          <Select defaultValue="all">
-            <SelectTrigger className="w-40 border-gray-200 focus:outline-none">
-              <SelectValue placeholder="All Classes" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Classes</SelectItem>
-              {classEnrollment.map((cls) => (
-                <SelectItem key={cls.class} value={cls.class.toLowerCase()}>
-                  {cls.class}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Student List */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        {/* Students Grid - 3x4 layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
           {displayStudents.map((student) => (
-            <StudentListCard
+            <StudentCard
               key={student.id}
               student={student}
+              compact={true}
             />
           ))}
         </div>
 
+        {/* Load More */}
         <div className="text-center">
-          <Button variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 focus:outline-none">
+          <Button variant="outline" size="lg" className="px-8 py-3">
             Load More Students (233 remaining)
           </Button>
         </div>

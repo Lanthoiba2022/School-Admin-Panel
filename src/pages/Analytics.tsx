@@ -55,6 +55,7 @@ export const Analytics = () => {
     <div>
       <Header 
         title="Analytics & Reports"
+        timestamp="12/08/2025, 15:46:57"
       />
 
       {/* Top Metrics */}

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Student } from '@/types';
 import { cn } from '@/lib/utils';
+import { Eye } from 'lucide-react';
 
 interface StudentCardProps {
   student: Student;
@@ -10,33 +10,24 @@ interface StudentCardProps {
   compact?: boolean;
 }
 
-const getRankBadgeColor = (rank: number) => {
-  if (rank === 1) return 'bg-yellow-400 text-yellow-900';
-  if (rank === 2) return 'bg-gray-300 text-gray-800';
-  if (rank === 3) return 'bg-orange-400 text-orange-900';
-  return 'bg-primary-blue text-white';
+const getPerformanceColor = (accuracy: number) => {
+  if (accuracy >= 90) return 'text-green-600 bg-green-50';
+  if (accuracy >= 80) return 'text-blue-600 bg-blue-50';
+  return 'text-gray-600 bg-gray-50';
 };
 
 export const StudentCard: React.FC<StudentCardProps> = ({ 
   student, 
-  showRanking = true,
+  showRanking = false,
   compact = false 
 }) => {
   return (
     <div className={cn(
-      "student-card",
-      compact ? "p-3" : "p-4"
+      "bg-white rounded-lg p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow",
+      compact ? "p-4" : "p-4"
     )}>
-      <div className="flex items-center gap-4">
-        {showRanking && student.rank && (
-          <div className={cn(
-            "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold",
-            getRankBadgeColor(student.rank)
-          )}>
-            {student.rank}
-          </div>
-        )}
-        
+      <div className="flex items-center gap-3">
+        {/* Profile Picture/Initials */}
         <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
           <img 
             src={student.avatar} 
@@ -45,36 +36,33 @@ export const StudentCard: React.FC<StudentCardProps> = ({
           />
         </div>
         
+        {/* Student Info */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-text-primary truncate">
+          <h3 className="font-semibold text-gray-900 truncate text-sm">
             {student.name}
           </h3>
-          <p className="text-sm text-text-secondary">
+          <p className="text-xs text-gray-500">
             {student.class}
           </p>
         </div>
         
+        {/* Performance and XP */}
         <div className="text-right">
-          <div className="flex items-center gap-2 mb-1">
-            <Badge variant="secondary" className="bg-primary-blue text-white">
-              {student.points} pts
-            </Badge>
+          <div className={cn(
+            "text-sm font-medium mb-1 px-2 py-1 rounded-full inline-block",
+            getPerformanceColor(student.accuracy)
+          )}>
+            {student.accuracy}%
           </div>
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-success-green font-medium">
-              {student.accuracy}% Accuracy
-            </span>
-            <span className="text-text-secondary">
-              {student.streak} day streak
-            </span>
+          <div className="text-xs text-gray-500">
+            {student.points.toLocaleString()} XP
           </div>
         </div>
         
-        {!compact && (
-          <Button variant="outline" size="sm">
-            View Profile
-          </Button>
-        )}
+        {/* Eye Icon */}
+        <Button variant="ghost" size="sm" className="p-1 h-8 w-8 rounded-full">
+          <Eye className="h-4 w-4 text-gray-400" />
+        </Button>
       </div>
     </div>
   );
