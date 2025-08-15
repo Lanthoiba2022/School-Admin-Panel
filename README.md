@@ -141,8 +141,17 @@ src/
 ├── types/              # TypeScript type definitions
 │   └── index.ts        # Core type interfaces
 ├── hooks/              # Custom React hooks
-├── lib/                # Utility functions
-└── assets/             # Static assets (images, icons)
+└── lib/                # Utility functions
+
+public/
+├── assets/             # Static assets (images, icons)
+│   ├── student-1.jpg   # Student profile images
+│   ├── student-2.jpg
+│   ├── student-3.jpg
+│   ├── student-4.jpg
+│   └── student-5.jpg
+├── placeholder.svg     # Placeholder image
+└── robots.txt          # SEO configuration
 ```
 
 ## 🎨 Design System
