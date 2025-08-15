@@ -12,7 +12,6 @@ export const Students = () => {
       <Header 
         title="Students"
         subtitle="Manage and view all student profiles and performance data"
-        timestamp="12/08/2025, 15:46:57"
       />
 
       {/* Summary Stats */}

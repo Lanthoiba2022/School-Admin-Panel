@@ -40,15 +40,12 @@ export const Dashboard = () => {
     <div className="min-h-screen bg-gray-50 p-6 focus:outline-none">
       {/* Custom Header to match the image */}
       <div className="mb-8">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-blue-600 mb-2">Greenwood Elementary School</h1>
-            <p className="text-gray-600">Welcome back, School Admin! Here's your school's overview.</p>
-          </div>
-          <div className="flex flex-col items-end gap-1">
-            <span className="text-sm text-gray-600">CBSE Board</span>
-            <span className="text-sm text-gray-600">Last updated: 12/08/2025, 15:46:57</span>
-          </div>
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
+          <Header 
+        title="Greenwood Elementary School"
+        subtitle="Welcome back, School Admin! Here's your school's overview."
+        timestamp="12/08/2025, 15:46:57"
+      />
         </div>
       </div>
 
