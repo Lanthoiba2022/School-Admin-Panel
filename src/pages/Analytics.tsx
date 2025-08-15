@@ -75,14 +75,14 @@ const engagementData = [
 
 export const Analytics = () => {
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics & Reports</h1>
+      <div className="mb-6 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Analytics & Reports</h1>
       </div>
 
       {/* Top Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
         {analyticsMetrics.map((metric, index) => (
           <MetricCard
             key={index}
@@ -97,15 +97,15 @@ export const Analytics = () => {
       </div>
 
       {/* Charts Row 1 - Fixed to match the image exactly */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8">
         {/* Left Column: Student Performance Distribution */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 relative">
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">Student Performance Distribution</h3>
-            <p className="text-sm text-gray-600">Overall accuracy breakdown across all students</p>
+        <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 relative">
+          <div className="mb-4 lg:mb-6">
+            <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-1">Student Performance Distribution</h3>
+            <p className="text-xs lg:text-sm text-gray-600">Overall accuracy breakdown across all students</p>
           </div>
           
-          <div className="h-80">
+          <div className="h-64 lg:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -113,7 +113,7 @@ export const Analytics = () => {
                   cx="50%"
                   cy="50%"
                   innerRadius={0}
-                  outerRadius={80}
+                  outerRadius={60}
                   paddingAngle={2}
                   dataKey="value"
                 >
@@ -126,15 +126,15 @@ export const Analytics = () => {
             </ResponsiveContainer>
           </div>
           
-          {/* Legend positioned in bottom right corner */}
-          <div className="absolute bottom-6 left-6 flex flex-col gap-3 mb-44">
+          {/* Legend positioned in bottom left corner - Mobile optimized */}
+          <div className="absolute -bottom-12 lg:bottom-6 left-4 lg:left-6 flex flex-col gap-2 lg:gap-3 mb-16 lg:mb-44">
             {performanceDistribution.map((entry, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div 
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: entry.color }}
                 ></div>
-                <span className="text-sm text-gray-900 whitespace-nowrap">
+                <span className="text-xs lg:text-sm text-gray-900 whitespace-nowrap">
                   {entry.name}
                 </span>
               </div>
@@ -143,29 +143,29 @@ export const Analytics = () => {
         </div>
 
         {/* Right Column: Average Performance by Skill Area */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">Average Performance by Skill Area</h3>
-            <p className="text-sm text-gray-600">Individual skill performance metrics and improvements</p>
+        <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200">
+          <div className="mb-4 lg:mb-6">
+            <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-1">Average Performance by Skill Area</h3>
+            <p className="text-xs lg:text-sm text-gray-600">Individual skill performance metrics and improvements</p>
           </div>
           
           {/* Skill Performance Progress Bars */}
-          <div className="space-y-4 mb-8">
+          <div className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
             {skillData.map((item, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div className="w-24 text-sm text-gray-600 font-medium">
+              <div key={index} className="flex items-center gap-3 lg:gap-4">
+                <div className="w-20 lg:w-24 text-xs lg:text-sm text-gray-600 font-medium">
                   {item.skill}
                 </div>
-                <div className="flex-1 bg-gray-100 rounded-full h-3 relative">
+                <div className="flex-1 bg-gray-100 rounded-full h-2 lg:h-3 relative">
                   <div 
-                    className="h-3 rounded-full"
+                    className="h-2 lg:h-3 rounded-full"
                     style={{ 
                       width: `${item.percentage}%`,
                       backgroundColor: item.color
                     }}
                   />
                 </div>
-                <div className="w-12 text-sm text-gray-900 font-medium text-right">
+                <div className="w-10 lg:w-12 text-xs lg:text-sm text-gray-900 font-medium text-right">
                   {item.percentage}%
                 </div>
               </div>
@@ -173,18 +173,18 @@ export const Analytics = () => {
           </div>
 
           {/* Skill Performance Bar Chart */}
-          <div className="h-48 mb-8">
+          <div className="h-36 lg:h-48 mb-6 lg:mb-8">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={skillData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                 <XAxis 
                   dataKey="skill" 
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                  tick={{ fontSize: 10, fill: '#6b7280' }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis 
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                  tick={{ fontSize: 10, fill: '#6b7280' }}
                   axisLine={false}
                   tickLine={false}
                   domain={[0, 100]}
@@ -212,10 +212,10 @@ export const Analytics = () => {
 
           {/* Month-over-Month Improvement */}
           <div>
-            <h4 className="text-sm font-medium text-gray-900 mb-3">Month-over-Month Improvement</h4>
-            <div className="grid grid-cols-2 gap-3">
+            <h4 className="text-xs lg:text-sm font-medium text-gray-900 mb-2 lg:mb-3">Month-over-Month Improvement</h4>
+            <div className="grid grid-cols-2 gap-2 lg:gap-3">
               {monthlyImprovement.map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-2 lg:p-3 bg-gray-50 rounded-lg">
                   <span className="text-xs font-medium text-gray-700">{item.skill}</span>
                   <div className="flex items-center gap-1">
                     <span className="text-xs font-bold text-green-600">+{item.improvement}%</span>
@@ -229,25 +229,25 @@ export const Analytics = () => {
       </div>
 
       {/* Bottom Section - Student Engagement Trends */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-1">Student Engagement Trends</h3>
-          <p className="text-sm text-gray-600">Monthly engagement patterns and learning time</p>
+      <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200">
+        <div className="mb-4 lg:mb-6">
+          <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-1">Student Engagement Trends</h3>
+          <p className="text-xs lg:text-sm text-gray-600">Monthly engagement patterns and learning time</p>
         </div>
         
-        <div className="h-80">
+        <div className="h-64 lg:h-80">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={engagementData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
               <XAxis 
                 dataKey="month" 
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 10, fill: '#6b7280' }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis 
                 yAxisId="left"
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 10, fill: '#6b7280' }}
                 axisLine={false}
                 tickLine={false}
                 domain={[0, 70]}
@@ -256,7 +256,7 @@ export const Analytics = () => {
               <YAxis 
                 yAxisId="right"
                 orientation="right"
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 10, fill: '#6b7280' }}
                 axisLine={false}
                 tickLine={false}
                 domain={[0, 30]}

@@ -75,25 +75,25 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 focus:outline-none">
-      <div className="flex items-start justify-between mb-4">
+    <div className="bg-white rounded-xl shadow-sm p-4 lg:p-6 border border-gray-100 focus:outline-none">
+      <div className="flex items-start justify-between mb-3 lg:mb-4">
         <div className="flex-1">
-          <p className="text-xs font-medium text-black uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-black uppercase tracking-wide mb-1 lg:mb-2">
             {title}
           </p>
-          <p className="text-3xl font-bold text-gray-900 mb-1">
+          <p className="text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
             {value}
           </p>
-          <p className="text-sm">
+          <p className="text-xs lg:text-sm">
             {renderChangeText()}
           </p>
         </div>
         
         <div className={cn(
-          "w-12 h-12 rounded-lg flex items-center justify-center ml-4 mt-4 flex-shrink-0",
+          "w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center ml-3 lg:ml-4 mt-2 lg:mt-4 flex-shrink-0",
           iconColorClasses[iconColor]
         )}>
-          <Icon size={24} />
+          <Icon size={20} className="lg:w-6 lg:h-6" />
         </div>
       </div>
     </div>
