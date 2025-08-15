@@ -194,21 +194,21 @@ export const analyticsData: AnalyticsData = {
     speaking: 74
   },
   monthlyEngagement: [
-    { month: "Jan", students: 45, lessons: 320 },
-    { month: "Feb", students: 52, lessons: 380 },
-    { month: "Mar", students: 48, lessons: 410 },
-    { month: "Apr", students: 58, lessons: 450 },
-    { month: "May", students: 65, lessons: 520 }
+    { month: "Jan", students: 45, lessons: 6 },
+    { month: "Feb", students: 52, lessons: 8 },
+    { month: "Mar", students: 48, lessons: 12 },
+    { month: "Apr", students: 58, lessons: 18 },
+    { month: "May", students: 65, lessons: 24 }
   ],
   performanceDistribution: [
-    { name: "Excellent (90-100%)", value: 35, color: "#10b981" },
-    { name: "Good (80-89%)", value: 45, color: "#2563eb" },
+    { name: "Excellent (90-100%)", value: 45, color: "#10b981" },
+    { name: "Good (80-89%)", value: 35, color: "#2563eb" },
     { name: "Average (70-79%)", value: 15, color: "#f59e0b" },
     { name: "Needs Improvement", value: 5, color: "#ef4444" }
   ],
   monthlyImprovement: [
-    { skill: "Vocabulary", improvement: 8 },
-    { skill: "Grammar", improvement: 6 },
+    { skill: "Vocabulary", improvement: 5 },
+    { skill: "Grammar", improvement: 8 },
     { skill: "Pronunciation", improvement: 12 },
     { skill: "Listening", improvement: 3 },
     { skill: "Speaking", improvement: 15 }

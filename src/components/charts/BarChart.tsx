@@ -17,7 +17,7 @@ export const CustomBarChart: React.FC<CustomBarChartProps> = ({
   data, 
   title, 
   subtitle,
-  color = "#2563eb"
+  color = "#60a5fa"
 }) => {
   return (
     <div className="focus:outline-none">
@@ -28,7 +28,7 @@ export const CustomBarChart: React.FC<CustomBarChartProps> = ({
         )}
       </div>
       
-      <div className="h-96 pb-8 focus:outline-none">
+      <div className="h-96 pb-12 focus:outline-none">
         <ResponsiveContainer width="100%" height="100%" className="focus:outline-none">
           <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 32 }} className="focus:outline-none">
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
@@ -42,6 +42,8 @@ export const CustomBarChart: React.FC<CustomBarChartProps> = ({
               tick={{ fontSize: 12, fill: '#6b7280' }}
               axisLine={false}
               tickLine={false}
+              domain={[0, 36]}
+              ticks={[0, 9, 18, 27, 36]}
             />
             <Tooltip 
               formatter={(value) => [value, 'Students']}

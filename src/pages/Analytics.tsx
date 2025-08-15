@@ -1,9 +1,7 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { MetricCard } from '@/components/cards/MetricCard';
-import { CustomPieChart } from '@/components/charts/PieChart';
-import { HorizontalBarChart } from '@/components/charts/HorizontalBarChart';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { analyticsData } from '@/data/mockData';
 import { Clock, BookOpen, Users, Target } from 'lucide-react';
 
@@ -27,7 +25,7 @@ const analyticsMetrics = [
   {
     title: "Average Session Time",
     value: "24 min",
-    change: "+6% from last month",
+    change: "+8% from last month",
     changeType: "positive" as const,
     icon: Target,
     iconColor: "purple" as const
@@ -50,13 +48,38 @@ const skillData = [
   { skill: "Speaking", percentage: 74, color: "#ef4444" }
 ];
 
+// Updated performance distribution to match the image exactly
+const performanceDistribution = [
+  { name: "Excellent (85-100%)", value: 45, color: "#10b981" },
+  { name: "Good (70-84%)", value: 35, color: "#f59e0b" },
+  { name: "Needs Improvement (<70%)", value: 20, color: "#ef4444" }
+];
+
+// Month-over-month improvement data
+const monthlyImprovement = [
+  { skill: "Vocabulary", improvement: 5 },
+  { skill: "Grammar", improvement: 8 },
+  { skill: "Pronunciation", improvement: 12 },
+  { skill: "Listening", improvement: 3 },
+  { skill: "Speaking", improvement: 15 }
+];
+
+// Updated engagement data to match the image exactly
+const engagementData = [
+  { month: "Jan", students: 45, lessons: 6 },
+  { month: "Feb", students: 52, lessons: 8 },
+  { month: "Mar", students: 48, lessons: 12 },
+  { month: "Apr", students: 58, lessons: 18 },
+  { month: "May", students: 65, lessons: 24 }
+];
+
 export const Analytics = () => {
   return (
-    <div>
-      <Header 
-        title="Analytics & Reports"
-        timestamp="12/08/2025, 15:46:57"
-      />
+    <div className="min-h-screen bg-gray-50 p-6">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics & Reports</h1>
+      </div>
 
       {/* Top Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -73,34 +96,90 @@ export const Analytics = () => {
         ))}
       </div>
 
-      {/* Charts Row 1 */}
+      {/* Charts Row 1 - Fixed to match the image exactly */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <CustomPieChart
-          data={analyticsData.performanceDistribution}
-          title="Student Performance Distribution"
-          subtitle="Overall accuracy breakdown across all students"
-        />
-        <HorizontalBarChart
-          data={skillData}
-          title="Average Performance by Skill Area"
-          subtitle="Individual skill performance metrics and improvements"
-        />
-      </div>
-
-      {/* Student Engagement Trends */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div className="chart-container">
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-text-primary">Student Engagement Trends</h3>
-            <p className="text-sm text-text-secondary">Monthly engagement patterns and learning time</p>
+        {/* Left Column: Student Performance Distribution */}
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 relative">
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-1">Student Performance Distribution</h3>
+            <p className="text-sm text-gray-600">Overall accuracy breakdown across all students</p>
           </div>
           
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={analyticsData.monthlyEngagement}>
+              <PieChart>
+                <Pie
+                  data={performanceDistribution}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={0}
+                  outerRadius={80}
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {performanceDistribution.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          
+          {/* Legend positioned in bottom right corner */}
+          <div className="absolute bottom-6 left-6 flex flex-col gap-3 mb-44">
+            {performanceDistribution.map((entry, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <div 
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: entry.color }}
+                ></div>
+                <span className="text-sm text-gray-900 whitespace-nowrap">
+                  {entry.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column: Average Performance by Skill Area */}
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-1">Average Performance by Skill Area</h3>
+            <p className="text-sm text-gray-600">Individual skill performance metrics and improvements</p>
+          </div>
+          
+          {/* Skill Performance Progress Bars */}
+          <div className="space-y-4 mb-8">
+            {skillData.map((item, index) => (
+              <div key={index} className="flex items-center gap-4">
+                <div className="w-24 text-sm text-gray-600 text-right font-medium">
+                  {item.skill}
+                </div>
+                <div className="flex-1 bg-gray-100 rounded-full h-6 relative">
+                  <div 
+                    className="h-6 rounded-full flex items-center justify-end pr-3"
+                    style={{ 
+                      width: `${item.percentage}%`,
+                      backgroundColor: item.color
+                    }}
+                  >
+                    <span className="text-white text-sm font-medium">
+                      {item.percentage}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Skill Performance Bar Chart */}
+          <div className="h-48 mb-8">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={skillData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                 <XAxis 
-                  dataKey="month" 
+                  dataKey="skill" 
                   tick={{ fontSize: 12, fill: '#6b7280' }}
                   axisLine={false}
                   tickLine={false}
@@ -109,6 +188,8 @@ export const Analytics = () => {
                   tick={{ fontSize: 12, fill: '#6b7280' }}
                   axisLine={false}
                   tickLine={false}
+                  domain={[0, 100]}
+                  ticks={[0, 25, 50, 75, 100]}
                 />
                 <Tooltip 
                   contentStyle={{
@@ -118,30 +199,79 @@ export const Analytics = () => {
                     fontSize: '12px'
                   }}
                 />
-                <Bar dataKey="students" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="lessons" fill="#10b981" radius={[4, 4, 0, 0]} />
+                <Bar 
+                  dataKey="percentage" 
+                  fill="#ef4444"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </div>
 
-        {/* Month-over-Month Improvement */}
-        <div className="chart-container">
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-text-primary">Month-over-Month Improvement</h3>
-          </div>
-          
-          <div className="space-y-4">
-            {analyticsData.monthlyImprovement.map((item, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="text-sm font-medium text-text-primary">{item.skill}</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-success-green">+{item.improvement}%</span>
-                  <span className="text-xs text-success-green">▲</span>
+          {/* Month-over-Month Improvement */}
+          <div>
+            <h4 className="text-sm font-medium text-gray-900 mb-3">Month-over-Month Improvement</h4>
+            <div className="grid grid-cols-2 gap-3">
+              {monthlyImprovement.map((item, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <span className="text-xs font-medium text-gray-700">{item.skill}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-bold text-green-600">+{item.improvement}%</span>
+                    <span className="text-xs text-green-600">●</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Section - Student Engagement Trends */}
+      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-1">Student Engagement Trends</h3>
+          <p className="text-sm text-gray-600">Monthly engagement patterns and learning time</p>
+        </div>
+        
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <ComposedChart data={engagementData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis 
+                dataKey="month" 
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis 
+                yAxisId="left"
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                axisLine={false}
+                tickLine={false}
+                domain={[0, 70]}
+                ticks={[0, 15, 30, 45, 60]}
+              />
+              <YAxis 
+                yAxisId="right"
+                orientation="right"
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                axisLine={false}
+                tickLine={false}
+                domain={[0, 30]}
+                ticks={[0, 6, 12, 18, 24]}
+              />
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '8px',
+                  fontSize: '12px'
+                }}
+              />
+              <Bar yAxisId="left" dataKey="students" fill="#2563eb" radius={[4, 4, 0, 0]} />
+              <Bar yAxisId="right" dataKey="lessons" fill="#10b981" radius={[4, 4, 0, 0]} />
+            </ComposedChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
