@@ -22,6 +22,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   const isMobile = useIsMobile();
 
   const handleLinkClick = () => {
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     if (isMobile && onClose) {
       onClose();
     }

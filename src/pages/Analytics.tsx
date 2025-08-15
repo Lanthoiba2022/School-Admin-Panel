@@ -99,7 +99,7 @@ export const Analytics = () => {
       {/* Charts Row 1 - Fixed to match the image exactly */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8">
         {/* Left Column: Student Performance Distribution */}
-        <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 relative">
+        <div className="bg-white rounded-xl p-6 lg:p-6 shadow-sm border border-gray-200 relative">
           <div className="mb-4 lg:mb-6">
             <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-1">Student Performance Distribution</h3>
             <p className="text-xs lg:text-sm text-gray-600">Overall accuracy breakdown across all students</p>
@@ -113,7 +113,7 @@ export const Analytics = () => {
                   cx="50%"
                   cy="50%"
                   innerRadius={0}
-                  outerRadius={60}
+                  outerRadius={80}
                   paddingAngle={2}
                   dataKey="value"
                 >
@@ -127,7 +127,7 @@ export const Analytics = () => {
           </div>
           
           {/* Legend positioned in bottom left corner - Mobile optimized */}
-          <div className="absolute -bottom-12 lg:bottom-6 left-4 lg:left-6 flex flex-col gap-2 lg:gap-3 mb-16 lg:mb-44">
+          <div className="absolute -bottom-14 lg:bottom-6 left-4 lg:left-6 flex flex-col gap-2 lg:gap-3 mb-16 lg:mb-44">
             {performanceDistribution.map((entry, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div 

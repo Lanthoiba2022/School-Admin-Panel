@@ -35,7 +35,7 @@ export const CustomPieChart: React.FC<CustomPieChartProps> = ({
       <div className="relative h-full focus:outline-none">
         {/* Pie chart centered */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-48 h-48 focus:outline-none">
+          <div className="w-48 h-48 md:w-64 md:h-64 focus:outline-none">
             <ResponsiveContainer width="100%" height="100%" className="focus:outline-none">
               <PieChart className="focus:outline-none">
                 <Pie
