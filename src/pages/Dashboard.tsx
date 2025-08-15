@@ -123,13 +123,13 @@ export const Dashboard = () => {
 
       {/* School Leaderboard */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-12">
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-2">
           <span className="text-2xl">🏆</span>
           <h2 className="text-xl font-semibold text-blue-600">
             School Leaderboard - Top 10 Champions
           </h2>
         </div>
-        <p className="text-gray-600 mb-8">
+        <p className="text-gray-600 mb-12">
           Our highest performing students this month with points and achievements
         </p>
 
@@ -148,20 +148,20 @@ export const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-yellow-50 rounded-lg p-6 text-center border border-yellow-200">
             <div className="text-3xl mb-2">🏆</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Top Scorer</h3>
-            <p className="text-green-600">Ahan Kumar - 830 pts</p>
+            <h3 className="font-semibold text-orange-800 mb-0">Top Scorer</h3>
+            <p className="text-orange-600">Ahan Kumar - 830 pts</p>
           </div>
           
           <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
             <div className="text-3xl mb-2">🔥</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Longest Streak</h3>
+            <h3 className="font-semibold text-green-800 mb-0">Longest Streak</h3>
             <p className="text-green-600">Ahan Kumar - 15 days</p>
           </div>
           
           <div className="bg-blue-50 rounded-lg p-6 text-center border border-blue-200">
             <div className="text-3xl mb-2">⚡</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Most Lessons</h3>
-            <p className="text-green-600">Ahan Kumar - 68 lessons</p>
+            <h3 className="font-semibold text-blue-800 mb-0">Most Lessons</h3>
+            <p className="text-blue-600">Ahan Kumar - 68 lessons</p>
           </div>
         </div>
       </div>

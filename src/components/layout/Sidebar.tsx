@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Home, Trophy, Users, BarChart3, Settings } from 'lucide-react';
+import { Home, Trophy, Users, BarChart3, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -71,14 +71,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
 
       {/* School Admin Profile */}
       <div className="p-4 border-t border-gray-200">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary-blue rounded-full flex items-center justify-center">
-            <span className="text-white font-medium text-sm">S</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-primary-blue rounded-full flex items-center justify-center">
+              <span className="text-white font-medium text-sm">S</span>
+            </div>
+            <div className="min-w-0">
+              <p className="font-medium text-text-primary text-sm">School Admin</p>
+              <p className="text-xs text-text-secondary truncate">Greenwood Elementary</p>
+            </div>
           </div>
-          <div>
-            <p className="font-medium text-text-primary text-sm">School Admin</p>
-            <p className="text-xs text-text-secondary">Greenwood Elementary</p>
-          </div>
+          {/* Logout Icon */}
+          <button className="p-4 text-text-secondary hover:text-primary-blue hover:bg-hover-blue rounded-lg transition-colors">
+            <LogOut size={16} />
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Student } from '@/types';
+import { Eye } from 'lucide-react';
 
 interface LeaderboardCardProps {
   student: Student;
@@ -10,7 +11,7 @@ interface LeaderboardCardProps {
 const getRankIcon = (rank: number) => {
   switch (rank) {
     case 1:
-      return "🥇";
+      return "🏆";
     case 2:
       return "🥈";
     case 3:
@@ -77,7 +78,11 @@ export const LeaderboardCard: React.FC<LeaderboardCardProps> = ({
 
       {/* Student Avatar */}
       <div className="text-center mb-3">
-        <div className="w-16 h-16 rounded-full overflow-hidden mx-auto border-2 border-gray-200">
+  <div className="relative w-20 h-20 mx-auto">
+    {rank <= 3 ? (
+      // Top 3 styling
+      <div className="relative w-28 h-18 -mx-3 rounded-full bg-yellow-300 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-yellow-500">
           {student.avatar ? (
             <img 
               src={student.avatar} 
@@ -91,6 +96,25 @@ export const LeaderboardCard: React.FC<LeaderboardCardProps> = ({
           )}
         </div>
       </div>
+    ) : (
+      // Others (blue ring)
+      <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-blue-300">
+        {student.avatar ? (
+          <img 
+            src={student.avatar} 
+            alt={student.name} 
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-lg font-semibold text-gray-700 flex items-center justify-center h-full bg-gray-100">
+            {student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </span>
+        )}
+      </div>
+    )}
+  </div>
+</div>
+
 
       {/* Student Info */}
       <div className="text-center mb-3">
@@ -101,7 +125,7 @@ export const LeaderboardCard: React.FC<LeaderboardCardProps> = ({
       {/* Points */}
       <div className="text-center mb-3">
         <Button 
-          className={`w-full h-10 text-sm font-bold ${getPointsButtonColor(rank)}`}
+          className={`h-8 text-sm font-bold rounded-full ${getPointsButtonColor(rank)}`}
           size="sm"
         >
           {student.points} pts
@@ -110,7 +134,7 @@ export const LeaderboardCard: React.FC<LeaderboardCardProps> = ({
 
       {/* Accuracy */}
       <div className="text-center mb-3">
-        <p className="text-xs text-green-600 font-medium">{student.accuracy}% Accuracy</p>
+        <p className="inline-block text-xs bg-green-200 border rounded-full px-2 py-1 text-green-600 font-medium whitespace-nowrap">{student.accuracy}% Accuracy</p>
       </div>
 
       {/* Streak */}
@@ -128,9 +152,9 @@ export const LeaderboardCard: React.FC<LeaderboardCardProps> = ({
         <Button 
           variant="outline" 
           size="sm" 
-          className="w-full h-8 border-gray-300 text-gray-700 hover:bg-gray-50 text-xs"
+          className="w-32 h-8 border-gray-300 text-gray-700 hover:bg-gray-50 text-xs rounded-xl"
         >
-          View Profile
+          <Eye size={16} /> View Profile
         </Button>
       </div>
     </div>

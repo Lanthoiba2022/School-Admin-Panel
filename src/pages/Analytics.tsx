@@ -66,11 +66,11 @@ const monthlyImprovement = [
 
 // Updated engagement data to match the image exactly
 const engagementData = [
-  { month: "Jan", students: 45, lessons: 6 },
-  { month: "Feb", students: 52, lessons: 8 },
-  { month: "Mar", students: 48, lessons: 12 },
-  { month: "Apr", students: 58, lessons: 18 },
-  { month: "May", students: 65, lessons: 24 }
+  { month: "Jan", students: 45, lessons: 12 },
+  { month: "Feb", students: 58, lessons: 20 },
+  { month: "Mar", students: 59, lessons:15 },
+  { month: "Apr", students: 56, lessons: 20 },
+  { month: "May", students: 60, lessons: 21 }
 ];
 
 export const Analytics = () => {
