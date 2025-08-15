@@ -16,7 +16,6 @@ export const Leaderboard = () => {
       <Header 
         title="🏆 School Leaderboard"
         subtitle="Celebrating our top performers and encouraging healthy competition"
-        timestamp="12/08/2025, 15:46:57"
       />
 
       {/* Champions Podium */}
@@ -38,7 +37,7 @@ export const Leaderboard = () => {
                 <img src={topThree[1]?.avatar} alt={topThree[1]?.name} className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-2 -right-2 bg-gray-400 rounded-full p-2 shadow-md">
-                <Medal className="w-4 h-4 text-white" />
+              🥈
               </div>
             </div>
             <div className="bg-gradient-to-b from-gray-400 to-gray-500 text-white px-6 py-8 rounded-2xl min-w-[140px] shadow-xl border border-gray-300">
@@ -55,8 +54,8 @@ export const Leaderboard = () => {
               <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-4 border-yellow-400 shadow-xl">
                 <img src={topThree[0]?.avatar} alt={topThree[0]?.name} className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -top-3 -right-3 bg-yellow-500 rounded-full p-2 shadow-lg">
-                <Crown className="w-5 h-5 text-white" />
+              <div className="absolute -top-3 -right-0 bg-yellow-500 rounded-full p-1 shadow-lg">
+                <Trophy className="w-6 h-6 text-white" />
               </div>
             </div>
             <div className="bg-gradient-to-b from-yellow-400 to-yellow-500 text-yellow-900 px-8 py-12 rounded-2xl min-w-[160px] shadow-2xl border border-yellow-300 relative">
@@ -79,7 +78,7 @@ export const Leaderboard = () => {
                 <img src={topThree[2]?.avatar} alt={topThree[2]?.name} className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-2 -right-2 bg-orange-500 rounded-full p-2 shadow-md">
-                <Medal className="w-4 h-4 text-white" />
+              🥉
               </div>
             </div>
             <div className="bg-gradient-to-b from-orange-400 to-orange-500 text-white px-6 py-8 rounded-2xl min-w-[140px] shadow-xl border border-orange-300">
@@ -160,14 +159,12 @@ export const Leaderboard = () => {
                           )}
                           {index === 1 && (
                             <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center relative">
-                              <Medal className="w-6 h-6 text-white" />
-                              <span className="absolute bottom-0 right-0 text-white font-bold text-xs bg-gray-600 rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                              🥈
                             </div>
                           )}
                           {index === 2 && (
                             <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center relative">
-                              <Medal className="w-6 h-6 text-white" />
-                              <span className="absolute bottom-0 right-0 text-white font-bold text-xs bg-orange-600 rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                              🥉
                             </div>
                           )}
                         </div>

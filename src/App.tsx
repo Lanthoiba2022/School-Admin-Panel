@@ -8,7 +8,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { Analytics } from "./pages/Analytics";
 import { Leaderboard } from "./pages/Leaderboard";
 import { Students } from "./pages/Students";
-import { Settings } from "./pages/Settings";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

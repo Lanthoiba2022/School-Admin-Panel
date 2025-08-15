@@ -153,21 +153,20 @@ export const Analytics = () => {
           <div className="space-y-4 mb-8">
             {skillData.map((item, index) => (
               <div key={index} className="flex items-center gap-4">
-                <div className="w-24 text-sm text-gray-600 text-right font-medium">
+                <div className="w-24 text-sm text-gray-600 font-medium">
                   {item.skill}
                 </div>
-                <div className="flex-1 bg-gray-100 rounded-full h-6 relative">
+                <div className="flex-1 bg-gray-100 rounded-full h-3 relative">
                   <div 
-                    className="h-6 rounded-full flex items-center justify-end pr-3"
+                    className="h-3 rounded-full"
                     style={{ 
                       width: `${item.percentage}%`,
                       backgroundColor: item.color
                     }}
-                  >
-                    <span className="text-white text-sm font-medium">
-                      {item.percentage}%
-                    </span>
-                  </div>
+                  />
+                </div>
+                <div className="w-12 text-sm text-gray-900 font-medium text-right">
+                  {item.percentage}%
                 </div>
               </div>
             ))}
@@ -201,9 +200,12 @@ export const Analytics = () => {
                 />
                 <Bar 
                   dataKey="percentage" 
-                  fill="#ef4444"
                   radius={[4, 4, 0, 0]}
-                />
+                >
+                  {skillData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -217,7 +219,7 @@ export const Analytics = () => {
                   <span className="text-xs font-medium text-gray-700">{item.skill}</span>
                   <div className="flex items-center gap-1">
                     <span className="text-xs font-bold text-green-600">+{item.improvement}%</span>
-                    <span className="text-xs text-green-600">●</span>
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                   </div>
                 </div>
               ))}

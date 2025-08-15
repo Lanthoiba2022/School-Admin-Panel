@@ -1,141 +1,190 @@
 import React from 'react';
-import { Header } from '@/components/layout/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
+import { Checkbox } from '@/components/ui/checkbox';
 
-export const Settings = () => {
+const Header = ({ title }: { title: string }) => (
+  <div className="mb-8">
+    <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
+  </div>
+);
+
+export default function Settings() {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50 p-6">
       <Header 
         title="Settings"
-        timestamp="12/08/2025, 15:46:57"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Profile Settings */}
-        <div className="space-y-6">
-          <div className="chart-container">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">Profile Settings</h2>
-            <p className="text-sm text-text-secondary mb-6">Update your personal information and contact details</p>
-            
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="fullName">Full Name</Label>
-                <Input id="fullName" defaultValue="Admin User" />
-              </div>
-              
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" defaultValue="admin@example.com" />
-              </div>
-              
-              <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" defaultValue="+1-555-0123" />
-              </div>
-              
-              <Button className="w-full">Update Profile</Button>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
+        {/* Profile Settings - Top Left */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">Profile Settings</h2>
+          <p className="text-sm text-gray-600 mb-6">Update your personal information and contact details</p>
+          
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="fullName" className="text-sm font-medium text-gray-900 mb-2 block">Full Name</Label>
+              <Input 
+                id="fullName" 
+                defaultValue="Admin User" 
+                className="w-full h-10 border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
             </div>
-          </div>
-
-          {/* Notification Preferences */}
-          <div className="chart-container">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">Notification Preferences</h2>
-            <p className="text-sm text-text-secondary mb-6">Manage how and when you receive notifications</p>
             
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="emailNotifications">Email Notifications</Label>
-                  <p className="text-sm text-text-secondary">Receive updates via email</p>
-                </div>
-                <Switch id="emailNotifications" defaultChecked />
+            <div>
+              <Label htmlFor="email" className="text-sm font-medium text-gray-900 mb-2 block">Email</Label>
+              <Input 
+                id="email" 
+                type="email" 
+                defaultValue="admin@example.com" 
+                className="w-full h-10 border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="phone" className="text-sm font-medium text-gray-900 mb-2 block">Phone</Label>
+              <Input 
+                id="phone" 
+                defaultValue="+1-555-0123" 
+                className="w-full h-10 border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            
+                         <Button className=" h-10 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl mt-6">
+               Update Profile
+             </Button>
+          </div>
+        </div>
+
+        {/* System Settings - Top Right */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">System Settings</h2>
+          <p className="text-sm text-gray-600 mb-6">Configure system preferences and default options</p>
+          
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="language" className="text-sm font-medium text-gray-900 mb-2 block">Default Language</Label>
+              <Select defaultValue="english">
+                <SelectTrigger className="w-full h-10 border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select language" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="english">English</SelectItem>
+                  <SelectItem value="spanish">Spanish</SelectItem>
+                  <SelectItem value="french">French</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
+              <Label htmlFor="timezone" className="text-sm font-medium text-gray-900 mb-2 block">Time Zone</Label>
+              <Select defaultValue="eastern">
+                <SelectTrigger className="w-full h-10 border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                  <SelectValue placeholder="Select timezone" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="eastern">UTC-5 (Eastern Time)</SelectItem>
+                  <SelectItem value="central">UTC-6 (Central Time)</SelectItem>
+                  <SelectItem value="pacific">UTC-8 (Pacific Time)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+                         <Button className="h-10 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl mt-6">
+               Save Settings
+             </Button>
+          </div>
+        </div>
+
+        {/* Notification Preferences - Bottom Left */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">Notification Preferences</h2>
+          <p className="text-sm text-gray-600 mb-6">Manage how and when you receive notifications</p>
+          
+          <div className="space-y-6">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <Label htmlFor="emailNotifications" className="text-sm font-medium text-gray-900 block">Email Notifications</Label>
+                <p className="text-sm text-gray-600 mt-0.5">Receive updates via email</p>
               </div>
-              
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="performanceReports">Performance Reports</Label>
-                  <p className="text-sm text-text-secondary">Weekly performance summaries</p>
-                </div>
-                <Switch id="performanceReports" defaultChecked />
+              <Checkbox 
+                id="emailNotifications" 
+                defaultChecked 
+                className="mt-0.5 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+            </div>
+            
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <Label htmlFor="performanceReports" className="text-sm font-medium text-gray-900 block">Performance Reports</Label>
+                <p className="text-sm text-gray-600 mt-0.5">Weekly performance summaries</p>
               </div>
-              
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="schoolAlerts">New School Alerts</Label>
-                  <p className="text-sm text-text-secondary">Notifications for new school registrations</p>
-                </div>
-                <Switch id="schoolAlerts" />
+              <Checkbox 
+                id="performanceReports" 
+                defaultChecked 
+                className="mt-0.5 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+            </div>
+            
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <Label htmlFor="schoolAlerts" className="text-sm font-medium text-gray-900 block">New School Alerts</Label>
+                <p className="text-sm text-gray-600 mt-0.5">Notifications for new school registrations</p>
               </div>
+              <Checkbox 
+                id="schoolAlerts" 
+                className="mt-0.5 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
             </div>
           </div>
         </div>
 
-        {/* System Settings */}
-        <div className="space-y-6">
-          <div className="chart-container">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">System Settings</h2>
-            <p className="text-sm text-text-secondary mb-6">Configure system preferences and default options</p>
-            
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="language">Default Language</Label>
-                <Select defaultValue="english">
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select language" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="english">English</SelectItem>
-                    <SelectItem value="spanish">Spanish</SelectItem>
-                    <SelectItem value="french">French</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <Label htmlFor="timezone">Time Zone</Label>
-                <Select defaultValue="eastern">
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select timezone" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="eastern">UTC-5 (Eastern Time)</SelectItem>
-                    <SelectItem value="central">UTC-6 (Central Time)</SelectItem>
-                    <SelectItem value="pacific">UTC-8 (Pacific Time)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <Button className="w-full">Save Settings</Button>
+        {/* Data Management - Bottom Right */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">Data Management</h2>
+          <p className="text-sm text-gray-600 mb-6">Export data and manage system backups</p>
+          
+          <div className="space-y-6">
+            <div>
+              <Label className="text-sm font-medium text-gray-900 mb-3 block">Export Data</Label>
+                             <div className="flex flex-wrap gap-3">
+                 <Button 
+                   variant="outline" 
+                   size="sm" 
+                   className="h-9 bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl font-bold px-2"
+                 >
+                   Export Student Data
+                 </Button>
+                 <Button 
+                   variant="outline" 
+                   size="sm" 
+                   className="h-9 bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl font-bold px-2"
+                 >
+                   Export School Reports
+                 </Button>
+                 <Button 
+                   variant="outline" 
+                   size="sm" 
+                   className="h-9 bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl font-bold px-2"
+                 >
+                   Export Analytics
+                 </Button>
+               </div>
             </div>
-          </div>
-
-          {/* Data Management */}
-          <div className="chart-container">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">Data Management</h2>
-            <p className="text-sm text-text-secondary mb-6">Export data and manage system backups</p>
             
-            <div className="space-y-4">
+            <div>
+              <Label className="text-sm font-medium text-gray-900 mb-3 block">Backup</Label>
               <div>
-                <Label className="text-sm font-medium text-text-primary">Export Data</Label>
-                <div className="flex gap-2 mt-2">
-                  <Button variant="outline" size="sm">Export Student Data</Button>
-                  <Button variant="outline" size="sm">Export School Reports</Button>
-                </div>
-                <div className="mt-2">
-                  <Button variant="outline" size="sm">Export Analytics</Button>
-                </div>
-              </div>
-              
-              <div>
-                <Label className="text-sm font-medium text-text-primary">Backup</Label>
-                <div className="mt-2">
-                  <Button variant="outline" className="w-full">Create Backup</Button>
-                  <p className="text-xs text-text-secondary mt-2">Last backup: March 15, 2024</p>
-                </div>
+                                 <Button 
+                   variant="outline" 
+                   className="h-9 bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-xl font-bold px-2"
+                 >
+                   Create Backup
+                 </Button>
+                <p className="text-xs text-gray-500 mt-2">Last backup: March 15, 2024</p>
               </div>
             </div>
           </div>
@@ -143,4 +192,4 @@ export const Settings = () => {
       </div>
     </div>
   );
-};
+}
